@@ -1,5 +1,6 @@
 #!/bin/bash
-
+echo "Made by NEPAX - Thanks to LOSTSEC!"
+sleep 1
 # Function to check if ffuf is installed
 check_ffuf_installation() {
     if ! command -v ffuf &> /dev/null; then
