@@ -2,7 +2,16 @@
 echo "Made by NEPAX - Thanks to LOSTSEC!"
 sleep 1
 
-# Maile Banako Function to handle Ctrl+C (SIGINT)
+# Function to expand tilde paths to full paths
+expand_path() {
+    local path="$1"
+    if [[ $path == ~* ]]; then
+        path="${path/#\~/$HOME}"
+    fi
+    echo "$path"
+}
+
+# Function to handle Ctrl+C (SIGINT)
 handle_sigint() {
     echo -e "\nCtrl+C detected."
     echo "Choose an option:"
@@ -31,10 +40,10 @@ handle_sigint() {
     esac
 }
 
-# Maile Banako Trap SIGINT (Ctrl+C) and call handle_sigint function
+# Trap SIGINT (Ctrl+C) and call handle_sigint function
 trap handle_sigint SIGINT
 
-# Maile Banako Function to check if ffuf is installed
+# Function to check if ffuf is installed
 check_ffuf_installation() {
     if ! command -v ffuf &> /dev/null; then
         echo "ffuf is not installed. Installing ffuf..."
@@ -51,7 +60,7 @@ check_ffuf_installation() {
     fi
 }
 
-# Maile Banako Function to display the menu
+# Function to display the menu
 display_menu() {
     echo ""
     echo "FFUF Fuzzing Toolkit"
@@ -80,7 +89,7 @@ display_menu() {
     echo "========================"
 }
 
-# Maile Banako Function to execute the selected ffuf command
+# Function to execute the selected ffuf command
 execute_ffuf_command() {
     local option=$1
     local domain=$2
@@ -92,10 +101,10 @@ execute_ffuf_command() {
     local cookie=$8
     local status_codes=$9
 
-    # Maile Banako Common parameters
+    # Common parameters
     base_flags="-t 50"
 
-    # Maile Banako Add status codes to base flags
+    # Add status codes to base flags
     if [[ -z $status_codes ]]; then
         echo "Error: Status codes are required for the -mc flag."
         exit 1
@@ -197,12 +206,12 @@ execute_ffuf_command() {
     esac
 }
 
-# Maile Banako Main menu function encapsulating the interactive workflow
+# Main menu function encapsulating the interactive workflow
 main_menu() {
     check_ffuf_installation
     display_menu
 
-    # Maile Banako Get user input for the option and display what was selected
+    # Get user input for the option and display what was selected
     read -p "Select option [1-21]: " option
     case $option in
         1) echo "You selected: Directory/File Brute Force" ;;
@@ -231,8 +240,9 @@ main_menu() {
 
     read -p "Enter target domain (e.g., https://example.com): " domain
     read -e -p "Enter main wordlist path: " wordlist
+    wordlist=$(expand_path "$wordlist")
 
-    # Maile Banako Additional inputs for specific options
+    # Additional inputs for specific options
     userlist=""
     passlist=""
     wordlist2=""
@@ -241,11 +251,14 @@ main_menu() {
 
     if [[ $option -eq 10 || $option -eq 12 || $option -eq 13 ]]; then
         read -e -p "Enter username wordlist path: " userlist
+        userlist=$(expand_path "$userlist")
         read -e -p "Enter password wordlist path: " passlist
+        passlist=$(expand_path "$passlist")
     fi
 
     if [[ $option -eq 12 || $option -eq 13 ]]; then
         read -e -p "Enter wordlist 2 path: " wordlist2
+        wordlist2=$(expand_path "$wordlist2")
     fi
 
     if [[ $option -eq 14 ]]; then
@@ -256,7 +269,7 @@ main_menu() {
         read -p "Enter proxy address (e.g., http://127.0.0.1:8080): " proxy
     fi
 
-    # Maile Banako Prompt for status codes
+    # Prompt for status codes
     echo "Choose status codes to match:"
     echo "1) 200 (OK)"
     echo "2) 403 (Forbidden)"
@@ -283,9 +296,9 @@ main_menu() {
             ;;
     esac
 
-    # Maile Banako Execute the selected ffuf command
+    # Execute the selected ffuf command
     execute_ffuf_command "$option" "$domain" "$wordlist" "$userlist" "$passlist" "$wordlist2" "$proxy" "$cookie" "$status_codes"
 }
 
-# Maile Banako Start the interactive menu
+# Start the interactive menu
 main_menu
