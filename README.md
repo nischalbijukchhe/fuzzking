@@ -43,13 +43,13 @@ This Bash script serves as a menu-driven wrapper for [ffuf](https://github.com/f
 
 1. **Clone or Download the Repository:**
    ```bash
-   git clone https://github.com/yourusername/ffuf-fuzzing-toolkit.git
-   cd ffuf-fuzzing-toolkit
+   git clone https://github.com/nischalbijukchhe/fuzzking.git
+   cd fuzzking
    ```
 
 2. **Make the Script Executable:**
    ```bash
-   chmod +x your_script.sh
+   chmod +x fuzzking.sh
    ```
 
 3. **Ensure Go is Installed:**  
@@ -62,7 +62,7 @@ This Bash script serves as a menu-driven wrapper for [ffuf](https://github.com/f
 
 Run the script from your terminal:
 ```bash
-./your_script.sh
+./fuzzking.sh
 ```
 
 ### What to Expect
@@ -137,15 +137,13 @@ Run the script from your terminal:
 
 - **Adjust Base Parameters:**  
   The script uses base flags (e.g., `-t 50` for threading). You can modify these settings directly in the script to suit your testing environment.
-- **Extend Functionality:**  
-  Feel free to add or modify options in the `execute_ffuf_command` function to tailor the toolkit to your specific needs.
 
 ---
 
 ## Credits
 
 - **NEPAX:** Author of the script.
-- **LOSTSEC:** Special thanks for inspiration and contributions.
+- **LOSTSEC:** Special thanks for inspiration and amazing article you can find on https://osintteam.blog/ffuf-mastery-the-ultimate-web-fuzzing-guide-f7755c396b92.
 
 ---
 
@@ -157,5 +155,5 @@ This tool is intended solely for authorized security testing and research purpos
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 ```
