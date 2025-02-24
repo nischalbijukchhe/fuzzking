@@ -109,23 +109,23 @@ execute_ffuf_command() {
     case $option in
         1)
             echo "Running Directory/File Brute Force..."
-            ffuf -u "$domain/FUZZ" -w "$wordlist" $base_flags
+            ffuf -u "https://$domain/FUZZ" -w "$wordlist" $base_flags
             ;;
         2)
             echo "Running POST Request Fuzzing..."
-            ffuf -u "$domain/FUZZ" -w "$wordlist" -X POST $base_flags
+            ffuf -u "https://$domain/FUZZ" -w "$wordlist" -X POST $base_flags
             ;;
         3)
             echo "Running Case Insensitive Search..."
-            ffuf -u "$domain/FUZZ" -w "$wordlist" -ic -c $base_flags
+            ffuf -u "https://$domain/FUZZ" -w "$wordlist" -ic -c $base_flags
             ;;
         4)
             echo "Running File Extension Fuzzing..."
-            ffuf -u "$domain/indexFUZZ" -w "$wordlist" -e .php,.bak,.db,.asp $base_flags
+            ffuf -u "https://$domain/indexFUZZ" -w "$wordlist" -e .php,.bak,.db,.asp $base_flags
             ;;
         5)
             echo "Running Recursive Fuzzing..."
-            ffuf -u "$domain/FUZZ" -w "$wordlist" -recursion -recursion-depth 3 $base_flags
+            ffuf -u "https://$domain/FUZZ" -w "$wordlist" -recursion -recursion-depth 3 $base_flags
             ;;
         6)
             echo "Running Subdomain Fuzzing..."
@@ -133,51 +133,51 @@ execute_ffuf_command() {
             ;;
         7)
             echo "Running Virtual Host Fuzzing..."
-            ffuf -w "$wordlist" -u "$domain/" -H "Host: FUZZ.$domain" $base_flags
+            ffuf -w "$wordlist" -u "https://$domain/" -H "Host: FUZZ.$domain" $base_flags
             ;;
         8)
             echo "Running Fuzzing GET Parameters..."
-            ffuf -w "$wordlist" -u "$domain/page?FUZZ=value" $base_flags
+            ffuf -w "$wordlist" -u "https://$domain/page?FUZZ=value" $base_flags
             ;;
         9)
             echo "Running Fuzzing POST Parameters..."
-            ffuf -w "$wordlist" -u "$domain/api" -X POST -d 'FUZZ=value' $base_flags
+            ffuf -w "$wordlist" -u "https://$domain/api" -X POST -d 'FUZZ=value' $base_flags
             ;;
         10)
             echo "Running Login Bypass Fuzzing..."
-            ffuf -w "$passlist" -u "$domain/login" -X POST -d "username=admin&password=FUZZ" $base_flags
+            ffuf -w "$passlist" -u "https://$domain/login" -X POST -d "username=admin&password=FUZZ" $base_flags
             ;;
         11)
             echo "Running PUT Request Fuzzing..."
-            ffuf -w "$wordlist" -X PUT -u "$domain/FUZZ" -b "$cookie" $base_flags
+            ffuf -w "$wordlist" -X PUT -u "https://$domain/FUZZ" -b "$cookie" $base_flags
             ;;
         12)
             echo "Running Clusterbomb Attack..."
-            ffuf -mode clusterbomb -w "$userlist:USER" -w "$passlist:PASS" -u "$domain/login?user=USER&pass=PASS" $base_flags
+            ffuf -mode clusterbomb -w "$userlist:USER" -w "$passlist:PASS" -u "https://$domain/login?user=USER&pass=PASS" $base_flags
             ;;
         13)
             echo "Running Pitchfork Attack..."
-            ffuf -mode pitchfork -w "$userlist:USER" -w "$passlist:PASS" -u "$domain/login?user=USER&pass=PASS" $base_flags
+            ffuf -mode pitchfork -w "$userlist:USER" -w "$passlist:PASS" -u "https://$domain/login?user=USER&pass=PASS" $base_flags
             ;;
         14)
             echo "Setting Cookies..."
-            ffuf -b "$cookie" -w "$wordlist" -u "$domain/FUZZ" $base_flags
+            ffuf -b "$cookie" -w "$wordlist" -u "https://$domain/FUZZ" $base_flags
             ;;
         15)
             echo "Using Proxies..."
-            ffuf -x "$proxy" -w "$wordlist" -u "$domain/FUZZ" $base_flags
+            ffuf -x "$proxy" -w "$wordlist" -u "https://$domain/FUZZ" $base_flags
             ;;
         16)
             echo "Running Custom Header Fuzzing..."
-            ffuf -w "$wordlist" -u "$domain/" -H "X-Custom-Header: FUZZ" $base_flags
+            ffuf -w "$wordlist" -u "https://$domain/" -H "X-Custom-Header: FUZZ" $base_flags
             ;;
         17)
             echo "Fuzzing with Custom User-Agent..."
-            ffuf -u "$domain/FUZZ" -w "$wordlist" -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" $base_flags
+            ffuf -u "https://$domain/FUZZ" -w "$wordlist" -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" $base_flags
             ;;
         18)
             echo "Running Rate Limiting Bypass..."
-            ffuf -w "$wordlist" -u "$domain/FUZZ" -rate 50 -t 50 $base_flags
+            ffuf -w "$wordlist" -u "https://$domain/FUZZ" -rate 50 -t 50 $base_flags
             ;;
         19)
             echo "Saving Output to HTML..."
