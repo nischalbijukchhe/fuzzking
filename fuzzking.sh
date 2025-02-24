@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Made by NEPAX - Thanks to LOSTSEC!"
 sleep 1
-# Function to check if ffuf is installed
+# Maile Banako Function to check if ffuf is installed
 check_ffuf_installation() {
     if ! command -v ffuf &> /dev/null; then
         echo "ffuf is not installed. Installing ffuf..."
@@ -18,7 +18,7 @@ check_ffuf_installation() {
     fi
 }
 
-# Function to display the menu
+# Maile Banako Function to display the menu
 display_menu() {
     echo ""
     echo "FFUF Fuzzing Toolkit"
@@ -47,7 +47,7 @@ display_menu() {
     echo "========================"
 }
 
-# Function to execute the selected ffuf command
+# Maile Banako Function to execute the selected ffuf command
 execute_ffuf_command() {
     local option=$1
     local domain=$2
@@ -59,10 +59,10 @@ execute_ffuf_command() {
     local cookie=$8
     local status_codes=$9
 
-    # Common parameters
+    # Maile Banako Common parameters
     base_flags="-t 50"
 
-    # Add status codes to base flags
+    # Maile Banako Add status codes to base flags
     if [[ -z $status_codes ]]; then
         echo "Error: Status codes are required for the -mc flag."
         exit 1
@@ -164,16 +164,16 @@ execute_ffuf_command() {
     esac
 }
 
-# Main script execution
+# Maile Banako Main script execution
 check_ffuf_installation
 display_menu
 
-# Get user input
+# Maile Banako Get user input
 read -p "Select option [1-21]: " option
 read -p "Enter target domain (e.g., https://example.com): " domain
 read -p "Enter main wordlist path: " wordlist
 
-# Additional inputs for specific options
+# Maile Banako Additional inputs for specific options
 userlist=""
 passlist=""
 wordlist2=""
@@ -197,7 +197,7 @@ if [[ $option -eq 15 ]]; then
     read -p "Enter proxy address (e.g., http://127.0.0.1:8080): " proxy
 fi
 
-# Prompt for status codes
+# Maile Banako Prompt for status codes
 echo "Choose status codes to match:"
 echo "1) 200 (OK)"
 echo "2) 403 (Forbidden)"
@@ -224,5 +224,5 @@ case $status_choice in
         ;;
 esac
 
-# Execute the selected ffuf command
+# Maile Banako Execute the selected ffuf command
 execute_ffuf_command "$option" "$domain" "$wordlist" "$userlist" "$passlist" "$wordlist2" "$proxy" "$cookie" "$status_codes"
