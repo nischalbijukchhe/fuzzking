@@ -1,7 +1,7 @@
 ```markdown
 # FFUF Fuzzing Toolkit
 
-**Made by NEPAX - Thanks to LOSTSEC | COFFIN [https://x.com/coffinxp7]!**
+**Made by NEPAX - Thanks to [COFFIN](https://x.com/coffinxp7)!**
 
 This Bash script serves as a menu-driven wrapper for [ffuf](https://github.com/ffuf/ffuf) (Fuzz Faster U Fool), streamlining various web fuzzing techniques into one easy-to-use tool. It automatically checks for `ffuf` installation, installs it if necessary, and then provides a range of fuzzing options to suit your testing needs.
 
@@ -143,7 +143,7 @@ Run the script from your terminal:
 ## Credits
 
 - **NEPAX:** Author of the script.
-- **LOSTSEC:** Special thanks for inspiration and amazing article you can find on https://osintteam.blog/ffuf-mastery-the-ultimate-web-fuzzing-guide-f7755c396b92.
+- **LOSTSEC:** Special thanks for inspiration and amazing article you can find on his [MEDIUM](https://osintteam.blog/ffuf-mastery-the-ultimate-web-fuzzing-guide-f7755c396b92).
 
 ---
 
