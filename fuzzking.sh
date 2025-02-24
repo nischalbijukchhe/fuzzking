@@ -228,7 +228,7 @@ main_menu() {
         *) echo "Invalid option selected!" ;;
     esac
 
-    read -p "Enter target domain (e.g., https://example.com): " domain
+    read -p "Enter target domain (e.g., example.com): " domain
     read -e -p "Enter main wordlist path: " wordlist
     wordlist=$(expand_path "$wordlist")
 
