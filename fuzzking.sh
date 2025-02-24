@@ -1,6 +1,39 @@
 #!/bin/bash
 echo "Made by NEPAX - Thanks to LOSTSEC!"
 sleep 1
+
+# Maile Banako Function to handle Ctrl+C (SIGINT)
+handle_sigint() {
+    echo -e "\nCtrl+C detected."
+    echo "Choose an option:"
+    echo "1) Exit"
+    echo "2) Save output"
+    echo "3) Go to main menu"
+    read -p "Enter your choice [1-3]: " sig_choice
+    case "$sig_choice" in
+        1)
+            echo "Exiting..."
+            exit 0
+            ;;
+        2)
+            echo "Saving output to default_output.txt... (simulated)"
+            # In a real scenario, capture and save the current output here.
+            exit 0
+            ;;
+        3)
+            echo "Returning to main menu..."
+            main_menu
+            ;;
+        *)
+            echo "Invalid choice. Returning to main menu..."
+            main_menu
+            ;;
+    esac
+}
+
+# Maile Banako Trap SIGINT (Ctrl+C) and call handle_sigint function
+trap handle_sigint SIGINT
+
 # Maile Banako Function to check if ffuf is installed
 check_ffuf_installation() {
     if ! command -v ffuf &> /dev/null; then
@@ -164,65 +197,95 @@ execute_ffuf_command() {
     esac
 }
 
-# Maile Banako Main script execution
-check_ffuf_installation
-display_menu
+# Maile Banako Main menu function encapsulating the interactive workflow
+main_menu() {
+    check_ffuf_installation
+    display_menu
 
-# Maile Banako Get user input
-read -p "Select option [1-21]: " option
-read -p "Enter target domain (e.g., https://example.com): " domain
-read -p "Enter main wordlist path: " wordlist
+    # Maile Banako Get user input for the option and display what was selected
+    read -p "Select option [1-21]: " option
+    case $option in
+        1) echo "You selected: Directory/File Brute Force" ;;
+        2) echo "You selected: POST Request Fuzzing" ;;
+        3) echo "You selected: Case Insensitive Search" ;;
+        4) echo "You selected: File Extension Fuzzing" ;;
+        5) echo "You selected: Recursive Fuzzing" ;;
+        6) echo "You selected: Subdomain Fuzzing" ;;
+        7) echo "You selected: Virtual Host Fuzzing" ;;
+        8) echo "You selected: Fuzzing GET Parameters" ;;
+        9) echo "You selected: Fuzzing POST Parameters" ;;
+        10) echo "You selected: Login Bypass Fuzzing" ;;
+        11) echo "You selected: PUT Request Fuzzing" ;;
+        12) echo "You selected: Clusterbomb Attack" ;;
+        13) echo "You selected: Pitchfork Attack" ;;
+        14) echo "You selected: Setting Cookies" ;;
+        15) echo "You selected: Using Proxies" ;;
+        16) echo "You selected: Custom Header Fuzzing" ;;
+        17) echo "You selected: Fuzzing with Custom User-Agent" ;;
+        18) echo "You selected: Rate Limiting Bypass" ;;
+        19) echo "You selected: Output to HTML" ;;
+        20) echo "You selected: Output to JSON" ;;
+        21) echo "You selected: Output to CSV" ;;
+        *) echo "Invalid option selected!" ;;
+    esac
 
-# Maile Banako Additional inputs for specific options
-userlist=""
-passlist=""
-wordlist2=""
-proxy=""
-cookie=""
+    read -p "Enter target domain (e.g., https://example.com): " domain
+    read -e -p "Enter main wordlist path: " wordlist
 
-if [[ $option -eq 10 || $option -eq 12 || $option -eq 13 ]]; then
-    read -p "Enter username wordlist path: " userlist
-    read -p "Enter password wordlist path: " passlist
-fi
+    # Maile Banako Additional inputs for specific options
+    userlist=""
+    passlist=""
+    wordlist2=""
+    proxy=""
+    cookie=""
 
-if [[ $option -eq 12 || $option -eq 13 ]]; then
-    read -p "Enter wordlist 2 path: " wordlist2
-fi
+    if [[ $option -eq 10 || $option -eq 12 || $option -eq 13 ]]; then
+        read -e -p "Enter username wordlist path: " userlist
+        read -e -p "Enter password wordlist path: " passlist
+    fi
 
-if [[ $option -eq 14 ]]; then
-    read -p "Enter cookies (e.g., 'session=abc123'): " cookie
-fi
+    if [[ $option -eq 12 || $option -eq 13 ]]; then
+        read -e -p "Enter wordlist 2 path: " wordlist2
+    fi
 
-if [[ $option -eq 15 ]]; then
-    read -p "Enter proxy address (e.g., http://127.0.0.1:8080): " proxy
-fi
+    if [[ $option -eq 14 ]]; then
+        read -p "Enter cookies (e.g., 'session=abc123'): " cookie
+    fi
 
-# Maile Banako Prompt for status codes
-echo "Choose status codes to match:"
-echo "1) 200 (OK)"
-echo "2) 403 (Forbidden)"
-echo "3) 404 (Not Found)"
-echo "4) All status codes"
-read -p "Enter your choice [1-4]: " status_choice
+    if [[ $option -eq 15 ]]; then
+        read -p "Enter proxy address (e.g., http://127.0.0.1:8080): " proxy
+    fi
 
-case $status_choice in
-    1)
-        status_codes="200"
-        ;;
-    2)
-        status_codes="403"
-        ;;
-    3)
-        status_codes="404"
-        ;;
-    4)
-        status_codes="all"
-        ;;
-    *)
-        echo "Invalid status code choice. Defaulting to 200,403,404."
-        status_codes="200,403,404"
-        ;;
-esac
+    # Maile Banako Prompt for status codes
+    echo "Choose status codes to match:"
+    echo "1) 200 (OK)"
+    echo "2) 403 (Forbidden)"
+    echo "3) 404 (Not Found)"
+    echo "4) All status codes"
+    read -p "Enter your choice [1-4]: " status_choice
 
-# Maile Banako Execute the selected ffuf command
-execute_ffuf_command "$option" "$domain" "$wordlist" "$userlist" "$passlist" "$wordlist2" "$proxy" "$cookie" "$status_codes"
+    case $status_choice in
+        1)
+            status_codes="200"
+            ;;
+        2)
+            status_codes="403"
+            ;;
+        3)
+            status_codes="404"
+            ;;
+        4)
+            status_codes="all"
+            ;;
+        *)
+            echo "Invalid status code choice. Defaulting to 200,403,404."
+            status_codes="200,403,404"
+            ;;
+    esac
+
+    # Maile Banako Execute the selected ffuf command
+    execute_ffuf_command "$option" "$domain" "$wordlist" "$userlist" "$passlist" "$wordlist2" "$proxy" "$cookie" "$status_codes"
+}
+
+# Maile Banako Start the interactive menu
+main_menu
