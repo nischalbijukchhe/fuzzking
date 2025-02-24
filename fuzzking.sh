@@ -2,7 +2,6 @@
 echo "Made by NEPAX - Thanks to LOSTSEC!"
 sleep 1
 
-# Function to expand tilde paths to full paths
 expand_path() {
     local path="$1"
     if [[ $path == ~* ]]; then
@@ -11,7 +10,6 @@ expand_path() {
     echo "$path"
 }
 
-# Function to handle Ctrl+C (SIGINT)
 handle_sigint() {
     echo -e "\nCtrl+C detected."
     echo "Choose an option:"
@@ -40,10 +38,8 @@ handle_sigint() {
     esac
 }
 
-# Trap SIGINT (Ctrl+C) and call handle_sigint function
 trap handle_sigint SIGINT
 
-# Function to check if ffuf is installed
 check_ffuf_installation() {
     if ! command -v ffuf &> /dev/null; then
         echo "ffuf is not installed. Installing ffuf..."
@@ -60,7 +56,6 @@ check_ffuf_installation() {
     fi
 }
 
-# Function to display the menu
 display_menu() {
     echo ""
     echo "FFUF Fuzzing Toolkit"
@@ -89,7 +84,6 @@ display_menu() {
     echo "========================"
 }
 
-# Function to execute the selected ffuf command
 execute_ffuf_command() {
     local option=$1
     local domain=$2
@@ -101,10 +95,8 @@ execute_ffuf_command() {
     local cookie=$8
     local status_codes=$9
 
-    # Common parameters
     base_flags="-t 50"
 
-    # Add status codes to base flags
     if [[ -z $status_codes ]]; then
         echo "Error: Status codes are required for the -mc flag."
         exit 1
@@ -206,12 +198,10 @@ execute_ffuf_command() {
     esac
 }
 
-# Main menu function encapsulating the interactive workflow
 main_menu() {
     check_ffuf_installation
     display_menu
 
-    # Get user input for the option and display what was selected
     read -p "Select option [1-21]: " option
     case $option in
         1) echo "You selected: Directory/File Brute Force" ;;
@@ -242,7 +232,6 @@ main_menu() {
     read -e -p "Enter main wordlist path: " wordlist
     wordlist=$(expand_path "$wordlist")
 
-    # Additional inputs for specific options
     userlist=""
     passlist=""
     wordlist2=""
@@ -269,7 +258,6 @@ main_menu() {
         read -p "Enter proxy address (e.g., http://127.0.0.1:8080): " proxy
     fi
 
-    # Prompt for status codes
     echo "Choose status codes to match:"
     echo "1) 200 (OK)"
     echo "2) 403 (Forbidden)"
@@ -296,9 +284,7 @@ main_menu() {
             ;;
     esac
 
-    # Execute the selected ffuf command
     execute_ffuf_command "$option" "$domain" "$wordlist" "$userlist" "$passlist" "$wordlist2" "$proxy" "$cookie" "$status_codes"
 }
 
-# Start the interactive menu
 main_menu
