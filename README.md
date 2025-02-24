@@ -151,9 +151,9 @@ Run the script from your terminal:
 This tool is intended solely for authorized security testing and research purposes. Unauthorized testing or scanning of networks or systems without explicit permission is illegal and unethical. Use responsibly and at your own risk.
 
 ## Screenshots
-![Categories](https://ibb.co/wtDK1qZ "Categories List")
-![Status Code Selection](https://ibb.co/PsbyzCRv "Status Code Selection")
-![Exit Detection](https://ibb.co/bwv3ZXv "Exit Detection")
+![Categories](https://lh3.googleusercontent.com/pw/AP1GczNxyW5NEYbA8IP8oZ2pif3_MSAf5CjqGr4klMcomSOc-NBS0zGvUDoy5GpJhLmJE-GnqLM_gaS9FKL7Z9jP86xqXIzlA7yC4Vc8z7L1Uu4D33TK2w=w2400 "Categories List")
+![Status Code Selection](https://lh3.googleusercontent.com/pw/AP1GczNUYcYKNN1FhY2UWIEhZ8UMCpXWZ_AWnp4ydgUm-DYoTrMtqfjGO8MVZjV1v0CeH01svEzs49fO2yT6LYzjxzdmKmjyP1kqyObFMoqHMYtUocGE1Q=w2400 "Status Code Selection")
+![Exit Detection](https://lh3.googleusercontent.com/pw/AP1GczOH-KrR2EsIze9azS-6Im37LBjAvxryvqu6iQinhcqdCWcdyyEjxI9eFPImQQ5yKwy6VCahz6XddRU2QqJr__dYP7Iyarz5Bt7mxBLZlDxPP6WgWQ=w2400 "Exit Detection")
 ---
 
 ## License
