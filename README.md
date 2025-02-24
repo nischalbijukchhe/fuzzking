@@ -1,4 +1,3 @@
-```markdown
 # FFUF Fuzzing Toolkit
 
 **Made by NEPAX - Thanks to [COFFIN](https://x.com/coffinxp7)
@@ -156,4 +155,4 @@ This tool is intended solely for authorized security testing and research purpos
 ## License
 
 This project is licensed under the MIT License.
-```
+
