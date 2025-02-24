@@ -121,7 +121,7 @@ execute_ffuf_command() {
             ;;
         4)
             echo "Running File Extension Fuzzing..."
-            ffuf -u "https://$domain/indexFUZZ" -w "$wordlist" -e .php,.bak,.db,.asp $base_flags
+            ffuf -u "https://$domain/FUZZ" -w "$wordlist" -e .php,.bak,.db,.asp $base_flags
             ;;
         5)
             echo "Running Recursive Fuzzing..."
@@ -144,7 +144,7 @@ execute_ffuf_command() {
             ffuf -w "$wordlist" -u "https://$domain/api" -X POST -d 'FUZZ=value' $base_flags
             ;;
         10)
-            echo "Running Login Bypass Fuzzing..."
+            echo "Running Login Bypass Fuzzing Change url -u as per requirement in code step 10..."
             ffuf -w "$passlist" -u "https://$domain/login" -X POST -d "username=admin&password=FUZZ" $base_flags
             ;;
         11)
