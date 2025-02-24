@@ -150,6 +150,10 @@ Run the script from your terminal:
 
 This tool is intended solely for authorized security testing and research purposes. Unauthorized testing or scanning of networks or systems without explicit permission is illegal and unethical. Use responsibly and at your own risk.
 
+## Screenshots
+![Categories](https://ibb.co/wtDK1qZ "Categories List")
+![Status Code Selection](https://ibb.co/PsbyzCRv "Status Code Selection")
+![Exit Detection](https://ibb.co/bwv3ZXv "Exit Detection")
 ---
 
 ## License
